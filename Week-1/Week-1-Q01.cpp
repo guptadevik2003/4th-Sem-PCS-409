@@ -1,5 +1,3 @@
-// 29-JAN-2024 Week 1 Lab Manual Q1
-
 #include <iostream>
 using namespace std;
 
@@ -21,7 +19,7 @@ int main(){
             cin>>arr[j];
         cin>>key;
         res = LinearSearch(arr, len, key);
-        if(res<0) cout<<"Not Present";
-        else cout<<"Present "<<res+1;
+        if(res<0) cout<<"Not Present"<<endl;
+        else cout<<"Present "<<res+1<<endl;
     }
 }
