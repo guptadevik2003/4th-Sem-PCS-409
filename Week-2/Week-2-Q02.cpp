@@ -26,7 +26,7 @@ vector<int> FindSequence(vector<int> arr){
 }
 
 int main(){
-    int iter, len, temp, res;
+    int iter, len, temp;
     cout<<"Enter number of cases: ";
     cin>>iter;
     for(int i=0; i<iter; i++){
