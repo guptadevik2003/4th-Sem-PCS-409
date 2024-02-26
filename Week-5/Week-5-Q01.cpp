@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 
-int CheckDuplicate(vector<char> arr){
+void CheckDuplicate(vector<char> arr){
     int minEle=arr[0], maxEle=arr[0], len = arr.size();
     for(int i=1; i<len; i++){
         if(maxEle<arr[i])
@@ -15,8 +15,17 @@ int CheckDuplicate(vector<char> arr){
     for(int i=0; i<len; i++){
         countArr[arr[i]-minEle]++;
     }
-    for(int i=0; i<countArr.size(); i++){
-        cout<<i<<" "<<countArr[i]<<endl;
+    int maxInd=0, maxVal=countArr[0];
+    for(int i=1; i<countArr.size(); i++){
+        if(maxVal < countArr[i]){
+            maxInd = i;
+            maxVal = countArr[i];
+        }
+    }
+    if(maxVal>1){
+        cout<<(char)maxInd+minEle<<" - "<<maxVal<<endl;
+    } else {
+        cout<<"No Duplicates Present"<<endl;
     }
 }
 
@@ -34,12 +43,8 @@ int main(){
             cin>>temp;
             arr.push_back(temp);
         }
-        res = CheckDuplicate(arr);
-        //if(res == -1)
-        //    cout<<""<<endl;
-        //else
-        //    
+        CheckDuplicate(arr);
     }
 }
 
-// 
+// DONE
