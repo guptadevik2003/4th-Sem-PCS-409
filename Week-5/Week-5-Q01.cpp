@@ -23,7 +23,7 @@ void CheckDuplicate(vector<char> arr){
         }
     }
     if(maxVal>1){
-        cout<<(char)maxInd+minEle<<" - "<<maxVal<<endl;
+        cout<<char(maxInd+minEle)<<" - "<<maxVal<<endl;
     } else {
         cout<<"No Duplicates Present"<<endl;
     }
