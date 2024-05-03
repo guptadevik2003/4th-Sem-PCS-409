@@ -13,18 +13,15 @@ bool isBipartite(vector<vector<int>> adjMatrix, int src, int vertices) {
   while(!q.empty()) {
     int current = q.front();
     q.pop();
-    cout<<"Current Node: "<<current<<endl;
-
-    for(int neigh=0; neigh<adjMatrix.size(); neigh++) {
-      
-      if(adjMatrix[current][neigh] && !visited[neigh]) {
-        visited[neigh] = true;
-        color[neigh] = !color[current];
-        q.push(neigh);
-      }
-      else if(adjMatrix[current][neigh] && neigh != current) {
-        cout<<"Color neigh: "<<neigh<<" "<<color[neigh]<<" Color curr: "<<current<<" "<<color[current]<<endl;
-        if(color[neigh] == color[current]) {
+    
+    for(int neigh=0; neigh<vertices; neigh++) {
+      if(adjMatrix[current][neigh]) {
+        if(!visited[neigh]) {
+          visited[neigh] = true;
+          color[neigh] = !color[current];
+          q.push(neigh);
+        }
+        else if(neigh != current && color[neigh] == color[current]) {
           return false;
         }
       }
@@ -36,50 +33,27 @@ bool isBipartite(vector<vector<int>> adjMatrix, int src, int vertices) {
 int main() {
   int vertices, temp, src;
   cout<<"Enter number of vertices: ";
-  // cin>>vertices;
+   cin>>vertices;
   vertices = 5;
 
   vector<vector<int>> adjMatrix(vertices, vector<int>(vertices, 0));
 
   cout<<"Enter edges:"<<endl;
-  // for(int i=0; i<vertices; i++){
-  //   for(int j=0; j<vertices; j++){
-  //     cin>>temp;
-  //     adjMatrix[i][j] = temp;
-  //   }
-  // }
-  // adjMatrix = { // bipartite
-  //   {0,1,1,1,0},
-  //   {1,0,0,0,1},
-  //   {1,0,0,0,1},
-  //   {1,0,0,0,0},
-  //   {0,1,1,0,0}
-  // };
-  adjMatrix = { // def bipartite
-    {0,1,0,0,0},
-    {1,0,1,0,0},
-    {0,1,0,1,0},
-    {0,0,1,0,1},
-    {0,0,0,1,0}
-  };
-  // adjMatrix = { // mine
-  //   {0,1,1,0,0},
-  //   {1,0,1,1,1},
-  //   {1,1,0,1,0},
-  //   {0,1,1,0,1},
-  //   {0,1,0,1,0}
-  // };
+   for(int i=0; i<vertices; i++){
+     for(int j=0; j<vertices; j++){
+       cin>>temp;
+       adjMatrix[i][j] = temp;
+     }
+   }
 
   cout<<"Enter source vertex: ";
-  // cin>>src;
   src = 0;
 
-  // BFS(adjMatrix, visited, src);
-  if(isBipartite(adjMatrix, visited, color, src)) {
+  if(isBipartite(adjMatrix, src, vertices)) {
     cout<<"Yes Bipartite"<<endl;
   } else {
     cout<<"Not Bipartite"<<endl;
   }
 }
 
-// NOT DONE
+// DONE
